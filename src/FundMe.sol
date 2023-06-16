@@ -3,14 +3,14 @@ pragma solidity ^0.8.17;
 
 import {AggregatorV3Interface} from "@chainlink/contracts/src/v0.8/interfaces/AggregatorV3Interface.sol";
 import {PriceConverter} from "./PriceConvertor.sol";
-error FundMe__NotOwner();
+
 
 contract FundMe {
     using PriceConverter for uint256;
 
     mapping(address => uint256) private s_addressToAmountFunded;
     address[] private s_funders;
-
+    error FundMe__NotOwner();
     // Could we make this constant?  /* hint: no! We should make it immutable! */
     address private /* immutable */ i_owner;
     uint256 public constant MINIMUM_USD = 5e18;

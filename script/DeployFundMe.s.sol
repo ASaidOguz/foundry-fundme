@@ -5,13 +5,13 @@ import "forge-std/Script.sol";
 import {FundMe} from "../src/FundMe.sol";
 import {HelperConfig} from "./HelperConfig.s.sol";
 contract DeployFundMe is Script{
-FundMe fundme;
+    address public ethUsdprice;
 function run() external returns(FundMe, HelperConfig){
     // Before tx not a real transaction..gas will be lower..
     HelperConfig helperconfig=new HelperConfig();
-    address ethUsdprice=helperconfig.activeNetworkConfig();
+    ethUsdprice=helperconfig.activeNetworkConfig();
     vm.startBroadcast();
-    fundme=new FundMe(ethUsdprice);
+    FundMe fundme=new FundMe(ethUsdprice);
     vm.stopBroadcast();
     return (fundme,helperconfig);
 }
